@@ -1,0 +1,27 @@
+class Solution {
+    void fun(int i, int j, char[][]grid){
+       int n = grid.length;
+       int m = grid[0].length;
+        if(i<0 || j<0 || i>=n || j>=m || grid[i][j]!='1')
+           return;
+        grid[i][j]='0';
+        fun(i+1,j,grid);
+        fun(i,j+1,grid);
+        fun(i-1,j,grid);
+        fun(i,j-1,grid);
+    }
+    public int numIslands(char[][] grid) {
+       int n = grid.length;
+       int m = grid[0].length;
+       int cnt = 0;
+       for(int i=0;i<n;i++){
+          for(int j=0;j<m;j++){
+            if(grid[i][j]=='1'){
+              fun(i,j,grid);
+              cnt++;
+            }
+          }
+       }
+       return cnt;
+    }
+}
